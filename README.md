@@ -1,28 +1,28 @@
 # python-tesseract-ocr-lambda
 
 
-#codebuild
+# codebuild
+````text
 image: aws/codebuild/eb-python-2.7-amazonlinux-64:2.1.6
+````
 
-#lambda
+# lambda
+````text
 lambda configuration-->advanced-->timeout 30 seconds
 runtime: python2.7
 handler: app.lambda_handler
+````
 
-#s3 bucket setup
+# s3 bucket setup
+````text
 Properties-->Events: Name = lambdafunc
 Properties-->Events: Events = ObjectCreate(All)
 Properties-->Events: Send to = Lambda function
 Properties-->Events: Lambda = Select your lambda function
-
-````python
-try:
-    print("ver: " + tesserocr.tesseract_version())
-    print("langs: " + tesserocr.get_languages())
-    print("test: " + tesserocr.file_to_text('test.png'))
-````    
+````
 
 # Test in docker - tbd
+````bash
 docker run -ti centos bash
 yum install gcc gcc-c++ make wget -y
 yum install autoconf aclocal automake -y
@@ -41,3 +41,12 @@ chmod 755 build.sh
 zip -g lambda.zip local.py
 unzip lambda.zip -d $PWD/lambda
 cd lambda
+````
+
+# python examples tbd
+````python
+try:
+    print("ver: " + tesserocr.tesseract_version())
+    print("langs: " + tesserocr.get_languages())
+    print("test: " + tesserocr.file_to_text('test.png'))
+````    
