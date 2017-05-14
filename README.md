@@ -21,6 +21,23 @@ Properties-->Events: Send to = Lambda function
 Properties-->Events: Lambda = Select your lambda function
 ````
 
+# EC2 instance build
+sudo su
+yum install gcc gcc-c++ make wget -y
+yum install autoconf aclocal automake -y
+yum install libtool zip -y
+yum install libjpeg-devel libpng-devel libtiff-devel zlib-devel -y
+yum install git -y
+yum install epel-release -y
+yum install python-pip -y
+yum install unzip -y
+yum install centos-release-scl -y
+yum install python27 -y
+git clone https://github.com/tkntobfrk/python-tesseract-ocr-lambda.git
+cd python*
+chmod 755 build.sh
+./build.sh
+
 # Test in docker - tbd
 ````bash
 docker run -ti centos bash
