@@ -22,6 +22,7 @@ Properties-->Events: Lambda = Select your lambda function
 ````
 
 # EC2 instance build
+````bash
 sudo su
 yum install gcc gcc-c++ make wget -y
 yum install autoconf aclocal automake -y
@@ -37,6 +38,7 @@ git clone https://github.com/tkntobfrk/python-tesseract-ocr-lambda.git
 cd python*
 chmod 755 build.sh
 ./build.sh
+````
 
 # Test in docker - tbd
 ````bash
