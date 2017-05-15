@@ -1,5 +1,8 @@
 # python-tesseract-ocr-lambda
 
+Need to update PSM for different types use centos-release-scl
+
+https://github.com/tesseract-ocr/tesseract/wiki/ImproveQuality#page-segmentation-method
 
 # codebuild
 ````text
