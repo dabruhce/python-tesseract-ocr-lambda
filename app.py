@@ -39,7 +39,7 @@ def key_name(key):
     return key.split('/')[-1]
 
 def tesseract(image_file):
-    command = 'LD_LIBRARY_PATH={} TESSDATA_PREFIX={} {}/tesseract {} {}'.format(
+    command = 'LD_LIBRARY_PATH={} TESSDATA_PREFIX={} {}/tesseract -l eng -psm 7 {} {}'.format(
         LIB_DIR,
         os.path.join(SCRIPT_DIR, 'tessdata'),
         SCRIPT_DIR2,
