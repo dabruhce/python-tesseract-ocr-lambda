@@ -62,6 +62,9 @@ unzip lambda.zip -d $PWD/lambda
 cd lambda
 ````
 
+# Should be able to run this through docker this way too
+docker run -v "$PWD":/var/task lambci/lambda:python2.7 app.myHandler '{"some": "event"}'
+
 # python examples tbd
 ````python
 try:
