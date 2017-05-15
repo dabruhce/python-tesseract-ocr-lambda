@@ -1,7 +1,8 @@
 from __future__ import print_function
-from tesserocr import PyTessBaseAPI
+from tesserocr import PyTessBaseAPI, PSM
 import tesserocr
 #import PyTessBaseAPI
+import logging
 import json
 import urllib
 import boto3
@@ -14,14 +15,20 @@ import pytesseract
 import requests
 from PIL import Image
 
+log = logging.getLogger()
+log.setLevel(logging.DEBUG)
+
 print('Loading tesseract-lambda')
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 LIB_DIR = os.path.join(SCRIPT_DIR, 'lib')
-
+PSM = '-l eng -psm 7'
+DATA_DIR='--tessdata-dir /var/task/tessdata'
+INPUT='/var/task/test.png'
+OUTPUT='/tmp/out.txt'
 
 tmp_dir = tempfile.mkdtemp()
-tmp_file_name = str(uuid.uuid4()) + '.txt'
+tmp_file_name = str('test.txt')
 tmp_result_path = os.path.join(tmp_dir, tmp_file_name)
 SCRIPT_DIR2 = tmp_dir
 
@@ -39,17 +46,20 @@ def key_name(key):
     return key.split('/')[-1]
 
 def tesseract(image_file):
-    command = 'LD_LIBRARY_PATH={} TESSDATA_PREFIX={} {}/tesseract -l eng -psm 7 {} {}'.format(
+    command = 'LD_LIBRARY_PATH={} TESSDATA_PREFIX={} {}/tesseract {} {} {}'.format(
         LIB_DIR,
         os.path.join(SCRIPT_DIR, 'tessdata'),
         SCRIPT_DIR2,
-        image_file,
-        tmp_result_path,
+        DATA_DIR,
+        INPUT,
+        OUTPUT,
+        PSM,
     )
 
     print('Tesseract command: ' + command)
 
     try:
+        log.debug(command)
         output = subprocess.check_output(command, shell=True)
         print("OUTPUT GOOD 1")
         print(output)
@@ -75,7 +85,4 @@ def lambda_handler(event, context):
     image = Image.open(image_file)
     print("before OCR")
     result_file = tesseract(image_file)
-    print("before OCR 2")
-    print(pytesseract.image_to_string(Image.open(image)))
-    print("before OCR 3")
-    print(tesserocr.image_to_text(image))
+    upload_file(result_file, bucket, key_name(key))
