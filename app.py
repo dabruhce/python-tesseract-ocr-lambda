@@ -22,7 +22,7 @@ print('Loading tesseract-lambda')
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 LIB_DIR = os.path.join(SCRIPT_DIR, 'lib')
-PSM = '-l eng -psm 7'
+PSM_FLAG = '-l eng -psm 7'
 DATA_DIR='--tessdata-dir /var/task/tessdata'
 INPUT='/var/task/test.png'
 OUTPUT='/tmp/out.txt'
@@ -53,7 +53,7 @@ def tesseract(image_file):
         DATA_DIR,
         INPUT,
         OUTPUT,
-        PSM,
+        PSM_FLAG,
     )
 
     print('Tesseract command: ' + command)

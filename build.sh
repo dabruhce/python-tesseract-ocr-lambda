@@ -30,6 +30,7 @@ pip install cython
 CPPFLAGS=-I/usr/local/include pip install tesserocr
 pip install -r requirements.txt
 pip install logging
+pip install PSM
 
 #package tess
 cd tesseracts
