@@ -11,6 +11,7 @@ phases:
       - yum install libjpeg-devel libpng-devel libtiff-devel zlib-devel -y
       - yum install git -y
       - yum install python-devel libusbx-devel systemd-devel -y
+      - chmod 755 build.sh
       #BUILD
       - ./build.sh
 artifacts:
