@@ -1,8 +1,20 @@
 # python-tesseract-ocr-lambda
 
-Need to update PSM for different types use centos-release-scl
+Need to update PSM for different types use
 
 https://github.com/tesseract-ocr/tesseract/wiki/ImproveQuality#page-segmentation-method
+
+````text
+Update PSM_FLAG = '-l eng -psm 7' to alter detection
+````
+
+# Notes
+````text
+Script copies tesseract binary into tmp, had some issues executing binary from /task directory
+
+shutil.copyfile("tesseract", tmp_dir + '/tesseract')
+os.chmod(tmp_dir + "/tesseract", 0755)
+````
 
 # codebuild
 ````text

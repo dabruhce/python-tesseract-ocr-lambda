@@ -23,9 +23,6 @@ print('Loading tesseract-lambda')
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 LIB_DIR = os.path.join(SCRIPT_DIR, 'lib')
 PSM_FLAG = '-l eng -psm 7'
-#DATA_DIR='--tessdata-dir /var/task/tessdata'
-#INPUT='/var/task/test.png'
-#OUTPUT='/tmp/out.txt'
 
 tmp_dir = tempfile.mkdtemp()
 tmp_file_name = str(uuid.uuid4()) + '.txt'
