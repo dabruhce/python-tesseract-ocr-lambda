@@ -56,6 +56,7 @@ cd ..
 mkdir tessdata
 cd tessdata
 cp $BUILD_DIR/tessdata/eng.traineddata .
+cp $BUILD_DIR/tessdata/osd.traineddata .
 cd ..
 cd ..
 
